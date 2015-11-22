@@ -174,20 +174,22 @@ int NetworkConnection::connectToHost()
 
 int NetworkConnection::closeConnection()
 {
-
-  for (int i = 0; i < 3; i++)
-    sendUdpMessage(message_type_quit, serverAddress);
-  
-  if (p2p)
+  if (connectedToInternetServer)
   {
     for (int i = 0; i < 3; i++)
-      sendUdpMessage(message_type_quit, partnerAddress);    
-    p2p = false;
-  }
+      sendUdpMessage(message_type_quit, serverAddress);
 
-  netFlag = -1;
-  SDL_WaitThread(threadNet, NULL);
-  threadNet = NULL;
+    if (p2p)
+    {
+      for (int i = 0; i < 3; i++)
+        sendUdpMessage(message_type_quit, partnerAddress);
+      p2p = false;
+    }
+
+    netFlag = -1;
+    SDL_WaitThread(threadNet, NULL);
+    threadNet = NULL;
+  }
 
   return 1;
 }
