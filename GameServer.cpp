@@ -20,7 +20,9 @@
   */
 
 /*
-  Run on a server to match clients using the NetworkConnection class.  
+  Run on a server to match clients using the NetworkConnection class.
+  Requires the SDL 2 and SDL_net 2.0 libraries, they can be found at:
+  https://www.libsdl.org/ and https://www.libsdl.org/projects/SDL_net/
   */
 
 #include <SDL.h>
