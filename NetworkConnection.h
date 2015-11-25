@@ -62,18 +62,19 @@ enum message_type {
   message_type_check = 65535
 };
 
+// Events sent by this class to the SDL event handler
 enum nc_event {
-  nc_event_connectedToServer,
-  nc_event_hostWaiting,
-  nc_event_foundClient,
-  nc_event_noHost,
-  nc_event_foundHost,
-  nc_event_connectionFailed,
-  nc_event_timeOut,
-  nc_event_newGame,
-  nc_event_playerQuit,
-  nc_event_connectionLost,
-  nc_event_reconnected
+  nc_event_connectedToServer, // a connection to the internet server has been established
+  nc_event_hostWaiting, // Placed on the waiting queue of the server, waiting for a client
+  nc_event_foundClient, // A client has been found and paired to this host
+  nc_event_noHost, // No hosts in the waiting queue of the server
+  nc_event_foundHost, // A host has been found and paired with this client
+  nc_event_connectionFailed, // The connection to the server failed
+  nc_event_timeOut, // The connection has timed out
+  nc_event_newGame, // A message indicating a new game is starting has been recieved from the host
+  nc_event_playerQuit, // The paired player has quit
+  nc_event_connectionLost, // The connection has been lost
+  nc_event_reconnected // The connection has been reestablished
 };
 
 struct PacketData {
